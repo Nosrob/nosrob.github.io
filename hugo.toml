@@ -9,9 +9,9 @@ theme = "lug"
 
 [params]
     # Meta
-    title = "Lug"
+    title = " "
     subtitle = " "
-    author = "Nicolas"
+    author = "Nicalo"
     # description = "Our music discoveries"
     # keywords = "Hugo, Blog, Portfolio, Music"
 
