@@ -280,6 +280,7 @@
 						}
 					},
 					update : function( $item ) {
+						var self = this;
 
 						if( $item ) {
 							this.$item = $item;
@@ -309,9 +310,14 @@
 							this.$largeImg.remove();
 						}
 
-						// Show loading spinner, but don't load media content yet
+						// Show loading spinner and immediately load new media content
 						this.$loading.show();
 						this.$fullimage.empty();
+						
+						// Load media content immediately when updating
+						setTimeout(function() {
+							self.loadMedia();
+						}, 50);
 
 					},
 					loadMedia : function() {
