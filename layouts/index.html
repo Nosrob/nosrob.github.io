@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+	<head>
+	{{ partial "head.html" . }}
+	{{ template "_internal/google_analytics.html" . }}
+	</head>
+	<body>
+		<div class="container">	
+				{{ partial "header.html" . }}
+			<div class="main">
+				<ul id="og-grid" class="og-grid">
+					{{ range .Site.RegularPages }}
+					<li>
+						<a href="{{.Permalink}}" 
+						   data-title="{{.Title}}" 
+						   data-description="{{.Params.description | default .Summary}}" 
+						   data-buttontext="{{.Site.Params.buttontext | default "Read article"}}"
+						   data-content="{{.Content | htmlEscape}}">
+							<img src="{{.Params.thumb | default "images/thumbs/1.png"}}" alt="{{.Params.alt | default .Title}}"/>
+						</a>
+					</li>
+					{{ end }}
+				</ul>
+				{{ partial "footer.html" . }}
+			</div>
+		</div>
+		{{ partial "scripts.html" . }}
+	</body>
+</html>

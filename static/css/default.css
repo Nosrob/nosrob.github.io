@@ -1,0 +1,127 @@
+/* General Demo Style */
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,700);
+
+:root {
+	--bg-color: #f9f9f9;
+	--text-color: #333;
+	--link-color: #555;
+	--header-bg: transparent;
+	--content-bg: #fff;
+}
+
+[data-theme="dark"] {
+	--bg-color: #1a1a1a;
+	--text-color: #e0e0e0;
+	--link-color: #ccc;
+	--header-bg: #222;
+	--content-bg: #2a2a2a;
+}
+
+html { height: 100%; }
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+body {
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow: scroll;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+	color: var(--link-color);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.container {
+	width: 100%;
+	position: relative;
+}
+
+.container > header {
+	width: 90%;
+	max-width: 1240px;
+	margin: 0 auto;
+	position: relative;
+	padding: 0 30px 50px 30px;
+}
+
+.container > header {
+	padding: 60px 30px 50px;
+	text-align: center;
+}
+
+.container > header h1 {
+	font-size: 34px;
+	line-height: 38px;
+	margin: 0 auto;
+	font-weight: 700;
+	color: var(--text-color);
+	transition: color 0.3s ease;
+}
+
+.container > header h1 span {
+	display: block;
+	font-size: 20px;
+	font-weight: 300;
+}
+
+.main > p {
+	text-align: center;
+	padding: 50px 20px;
+}
+
+.theme-toggle {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: transparent;
+	border: none;
+	width: 32px;
+	height: 32px;
+	font-size: 14px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+	color: #888;
+	opacity: 0.7;
+}
+
+.theme-toggle:hover {
+	opacity: 1;
+	background: rgba(0,0,0,0.05);
+}
+
+.container > header {
+	position: relative;
+}

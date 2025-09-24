@@ -1,0 +1,8 @@
+name = "Lug"
+license = "MIT License"
+description = "A customized grid theme for Hugo blog with dark mode support."
+tags = ["responsive", "grid", "blog", "dark-mode", "simple", "music"]
+min_version = 0.15
+
+[author]
+  name = "Nosrob"
