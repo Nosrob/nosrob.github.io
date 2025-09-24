@@ -227,7 +227,21 @@
 
 @media screen and (max-width: 650px) {
 
-	.og-fullimg { display: none; }
+	.og-fullimg { 
+		display: block;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	
+	.og-fullimg iframe {
+		max-width: 100%;
+		width: 95%;
+		height: 250px;
+		margin: 0 auto;
+		aspect-ratio: 16/9;
+	}
+	
 	.og-details { float: none; width: 100%; }
 	
 }
