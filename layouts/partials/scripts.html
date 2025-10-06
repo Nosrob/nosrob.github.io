@@ -210,6 +210,22 @@
 					$items.on( 'click', 'span.og-close', function() {
 						hidePreview();
 						return false;
+					} ).on( 'click', 'span.og-share', function() {
+						var $item = $( this ).closest( 'li' );
+						var articleId = $item.data( 'article-id' );
+						var url = window.location.origin + window.location.pathname + '#' + articleId;
+
+						navigator.clipboard.writeText(url).then(function() {
+							var $shareBtn = $( this );
+							$shareBtn.addClass('og-share-copied');
+							setTimeout(function() {
+								$shareBtn.removeClass('og-share-copied');
+							}, 2000);
+						}.bind(this), function(err) {
+							console.error('Erreur lors de la copie:', err);
+						});
+
+						return false;
 					} ).children( 'a' ).on( 'click', function(e) {
 
 						var $item = $( this ).parent();
@@ -272,7 +288,8 @@
 						this.$loading = $( '<div class="og-loading"></div>' );
 						this.$fullimage = $( '<div class="og-fullimg" style="width: 100%; text-align: center;"></div>' ).append( this.$loading );
 						this.$closePreview = $( '<span class="og-close"></span>' );
-						this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$title, this.$fullimage );
+						this.$shareButton = $( '<span class="og-share" title="Copier le lien"></span>' );
+						this.$previewInner = $( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$shareButton, this.$title, this.$fullimage );
 						this.$previewEl = $( '<div class="og-expander"></div>' ).append( this.$previewInner );
 						this.$item.append( this.getEl() );
 						if( support ) {
@@ -447,5 +464,17 @@
 		<script>
 			$(function() {
 				Grid.init();
+
+				// Ouvrir automatiquement l'article depuis l'URL hash
+				if (window.location.hash) {
+					var articleId = window.location.hash.substring(1);
+					var $targetItem = $('li[data-article-id="' + articleId + '"]');
+
+					if ($targetItem.length) {
+						setTimeout(function() {
+							$targetItem.find('a').click();
+						}, 500);
+					}
+				}
 			});
 		</script>
