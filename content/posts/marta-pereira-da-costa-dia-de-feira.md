@@ -3,7 +3,7 @@ title: "Marta Pereira da Costa - Dia de feira"
 date: 2026-01-08T01:00:00+01:00
 draft: false
 description: ""
-thumb: "images/thumbs/marta-pereira-da-costa.jpg"
+thumb: "images/thumbs/marta-pereira-da-costa-dia-de-feira.jpg"
 alt: "Dia de feira"
 tags: [folk]
 categories: []

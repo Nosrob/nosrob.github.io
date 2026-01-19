@@ -3,7 +3,7 @@ title: "Gerry Mulligan - Prelude In E Minor"
 date: 2025-10-01T15:01:42+02:00
 draft: false
 description: ""
-thumb: "images/thumbs/Gerry_Mulligan.jpg"
+thumb: "images/thumbs/gerry-mulligan-prelude-in-e-minor.jpg"
 alt: "Gerry Mulligan - Prelude In E Minor"
 tags: []
 categories: []

@@ -2,7 +2,7 @@
 title: "1, 2, To the Bass - Stanley Clarke feat Q-Tip"
 date: 2025-10-05T20:20:00+01:00
 draft: false
-thumb: "images/thumbs/1-2-bass.jpg"
+thumb: "images/thumbs/stanley-clarke-feat-q-tip-1-2-to-the-bass.jpg"
 alt: "1, 2, To the Bass"
 tags: ["youtube", "bass", "jazz"]
 categories: ["musique"]

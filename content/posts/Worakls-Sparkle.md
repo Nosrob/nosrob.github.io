@@ -3,7 +3,7 @@ title: "Worakls - Sparkle"
 date: 2025-12-10T21:00:00+01:00
 draft: false
 description: ""
-thumb: "images/thumbs/Worakls-Sparkle.jpg"
+thumb: "images/thumbs/worakls-sparkle.jpg"
 alt: "Sparkle"
 tags: [electronic]
 categories: []

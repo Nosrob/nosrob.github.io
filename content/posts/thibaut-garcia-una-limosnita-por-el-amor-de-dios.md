@@ -3,7 +3,7 @@ title: "Thibaut Garcia - Una Limosnita por el Amor de Dios (Agustín Barrios Man
 date: 2026-01-19T18:00:00+01:00
 draft: false
 description: ""
-thumb: "images/thumbs/garcia-thibaut.jpg"
+thumb: "images/thumbs/thibaut-garcia-una-limosnita-por-el-amor-de-dios.jpg"
 alt: "Una Limosnita"
 tags: [classical]
 categories: []

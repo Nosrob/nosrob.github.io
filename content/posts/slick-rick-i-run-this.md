@@ -3,7 +3,7 @@ title: "Slick Rick - I Run This"
 date: 2025-10-02T19:12:00+02:00
 draft: false
 description: ""
-thumb: "images/thumbs/slickrick-irunthis.jpg"
+thumb: "images/thumbs/slick-rick-i-run-this.jpg"
 alt: "Slick Rick - I Run This"
 tags: []
 categories: []

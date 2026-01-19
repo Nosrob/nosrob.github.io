@@ -3,7 +3,7 @@ title: "Alvin Lee - I'm Going Home"
 date: 2025-11-14T18:30:00+01:00
 draft: false
 description: ""
-thumb: "images/thumbs/alvin_lee.jpg"
+thumb: "images/thumbs/alvin-lee-im-going-home.jpg"
 alt: "Alvin Lee - I'm Going Home"
 tags: [rock,guitar]
 categories: []

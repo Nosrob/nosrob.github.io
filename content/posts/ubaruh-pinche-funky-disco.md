@@ -2,7 +2,7 @@
 title: "Pinche Funky Disco - Ubaruh"
 date: 2025-10-21T18:40:00+02:00
 draft: false
-thumb: "images/thumbs/pinche-funky-disco.jpg"
+thumb: "images/thumbs/ubaruh-pinche-funky-disco.jpg"
 alt: "Pinche Funky Disco"
 tags: ["youtube", "electro", "tech.house"]
 categories: ["musique"]
