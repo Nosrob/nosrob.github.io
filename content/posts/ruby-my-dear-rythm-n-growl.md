@@ -1,6 +1,6 @@
 ---
 title: "Ruby My Dear - Rythm N Growl"
-date: 2025-12-10T21:00:00+01:00
+date: 2026-02-04T12:00:00+01:00
 draft: false
 description: ""
 thumb: "images/thumbs/ruby_my_dear.jpg"
