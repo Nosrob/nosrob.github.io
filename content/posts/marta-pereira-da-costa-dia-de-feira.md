@@ -5,7 +5,7 @@ draft: false
 description: ""
 thumb: "images/thumbs/marta-pereira-da-costa-dia-de-feira.jpg"
 alt: "Dia de feira"
-tags: [folk]
+tags: ["folk"]
 categories: []
 ---
 

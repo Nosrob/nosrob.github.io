@@ -5,7 +5,7 @@ draft: false
 description: ""
 thumb: "images/thumbs/ruby_my_dear.jpg"
 alt: "Rythm N Growl"
-tags: [electronic,breakcore]
+tags: ["electronic", "breakcore"]
 categories: []
 ---
 

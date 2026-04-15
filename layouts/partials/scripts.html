@@ -1,127 +1,5 @@
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 		<script>
-			var $event = $.event,
-			$special,
-			resizeTimeout;
-
-			$special = $event.special.debouncedresize = {
-				setup: function() {
-					$( this ).on( "resize", $special.handler );
-				},
-				teardown: function() {
-					$( this ).off( "resize", $special.handler );
-				},
-				handler: function( event, execAsap ) {
-					var context = this,
-						args = arguments,
-						dispatch = function() {
-							event.type = "debouncedresize";
-							$event.dispatch.apply( context, args );
-						};
-
-					if ( resizeTimeout ) {
-						clearTimeout( resizeTimeout );
-					}
-
-					execAsap ?
-						dispatch() :
-						resizeTimeout = setTimeout( dispatch, $special.threshold );
-				},
-				threshold: 250
-			};
-
-			var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
-
-			$.fn.imagesLoaded = function( callback ) {
-				var $this = this,
-					deferred = $.isFunction($.Deferred) ? $.Deferred() : 0,
-					hasNotify = $.isFunction(deferred.notify),
-					$images = $this.find('img').add( $this.filter('img') ),
-					loaded = [],
-					proper = [],
-					broken = [];
-
-				if ($.isPlainObject(callback)) {
-					$.each(callback, function (key, value) {
-						if (key === 'callback') {
-							callback = value;
-						} else if (deferred) {
-							deferred[key](value);
-						}
-					});
-				}
-
-				function doneLoading() {
-					var $proper = $(proper),
-						$broken = $(broken);
-
-					if ( deferred ) {
-						if ( broken.length ) {
-							deferred.reject( $images, $proper, $broken );
-						} else {
-							deferred.resolve( $images );
-						}
-					}
-
-					if ( $.isFunction( callback ) ) {
-						callback.call( $this, $images, $proper, $broken );
-					}
-				}
-
-				function imgLoaded( img, isBroken ) {
-					if ( img.src === BLANK || $.inArray( img, loaded ) !== -1 ) {
-						return;
-					}
-
-					loaded.push( img );
-
-					if ( isBroken ) {
-						broken.push( img );
-					} else {
-						proper.push( img );
-					}
-
-					$.data( img, 'imagesLoaded', { isBroken: isBroken, src: img.src } );
-
-					if ( hasNotify ) {
-						deferred.notifyWith( $(img), [ isBroken, $images, $(proper), $(broken) ] );
-					}
-
-					if ( $images.length === loaded.length ){
-						setTimeout( doneLoading );
-						$images.unbind( '.imagesLoaded' );
-					}
-				}
-
-				if ( !$images.length ) {
-					doneLoading();
-				} else {
-					$images.bind( 'load.imagesLoaded error.imagesLoaded', function( event ){
-						imgLoaded( event.target, event.type === 'error' );
-					}).each( function( i, el ) {
-						var src = el.src;
-
-						var cached = $.data( el, 'imagesLoaded' );
-						if ( cached && cached.src === src ) {
-							imgLoaded( el, cached.isBroken );
-							return;
-						}
-
-						if ( el.complete && el.naturalWidth !== undefined ) {
-							imgLoaded( el, el.naturalWidth === 0 || el.naturalHeight === 0 );
-							return;
-						}
-
-						if ( el.readyState || el.complete ) {
-							el.src = BLANK;
-							el.src = src;
-						}
-					});
-				}
-
-				return deferred ? deferred.promise( $this ) : $this;
-			};
-
 			var Grid = (function() {
 
 				var $grid = $( '*#og-grid' ),
@@ -132,31 +10,38 @@
 					marginExpanded = 10,
 					$window = $( window ), winsize,
 					$body = $( 'html, body' ),
-					transEndEventNames = {
-						'WebkitTransition' : 'webkitTransitionEnd',
-						'MozTransition' : 'transitionend',
-						'OTransition' : 'oTransitionEnd',
-						'msTransition' : 'MSTransitionEnd',
-						'transition' : 'transitionend'
-					},
-					transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
-					support = Modernizr.csstransitions,
+					transEndEventName = 'transitionend',
+					support = true,
 					settings = {
 						minHeight : 500,
 						speed : 350,
 						easing : 'ease'
 					};
 
+				function waitImagesLoaded( $container, callback ) {
+					var imgs = $container.find( 'img' ).toArray();
+					if ( !imgs.length ) { callback(); return; }
+					var remaining = imgs.length;
+					function decrement() {
+						if ( --remaining === 0 ) callback();
+					}
+					imgs.forEach( function( img ) {
+						if ( img.complete ) {
+							decrement();
+						} else {
+							$( img ).one( 'load error', decrement );
+						}
+					} );
+				}
+
 				function init( config ) {
-					
+
 					settings = $.extend( true, {}, settings, config );
 
-					$grid.imagesLoaded( function() {
-
+					waitImagesLoaded( $grid, function() {
 						saveItemInfo( true );
 						getWinSize();
 						initEvents();
-
 					} );
 
 				}
@@ -188,20 +73,22 @@
 				}
 
 				function initEvents() {
-					
-					initItemsEvents( $items );
-					
-					$window.on( 'debouncedresize', function() {
-						
-						scrollExtra = 0;
-						previewPos = -1;
-						saveItemInfo();
-						getWinSize();
-						var preview = $.data( this, 'preview' );
-						if( typeof preview != 'undefined' ) {
-							hidePreview();
-						}
 
+					initItemsEvents( $items );
+
+					var resizeTimeout;
+					$window.on( 'resize', function() {
+						clearTimeout( resizeTimeout );
+						resizeTimeout = setTimeout( function() {
+							scrollExtra = 0;
+							previewPos = -1;
+							saveItemInfo();
+							getWinSize();
+							var preview = $.data( window, 'preview' );
+							if( typeof preview != 'undefined' ) {
+								hidePreview();
+							}
+						}, 250 );
 					} );
 
 				}
@@ -241,7 +128,7 @@
 
 				function showPreview( $item ) {
 
-					var preview = $.data( this, 'preview' ),
+					var preview = $.data( window, 'preview' ),
 						position = $item.data( 'offsetTop' );
 
 					scrollExtra = 0;
@@ -258,20 +145,20 @@
 							preview.update( $item );
 							return false;
 						}
-						
+
 					}
 
 					previewPos = position;
-					preview = $.data( this, 'preview', new Preview( $item ) );
+					preview = $.data( window, 'preview', new Preview( $item ) );
 					preview.open();
 
 				}
 
 				function hidePreview() {
 					current = -1;
-					var preview = $.data( this, 'preview' );
+					var preview = $.data( window, 'preview' );
 					preview.close();
-					$.removeData( this, 'preview' );
+					$.removeData( window, 'preview' );
 				}
 
 				function Preview( $item ) {
@@ -302,7 +189,7 @@
 						if( $item ) {
 							this.$item = $item;
 						}
-						
+
 						if( current !== -1 ) {
 							var $currentItem = $items.eq( current );
 							$currentItem.removeClass( 'og-expanded' );
@@ -330,7 +217,7 @@
 						// Show loading spinner and immediately load new media content
 						this.$loading.show();
 						this.$fullimage.empty();
-						
+
 						// Load media content immediately when updating
 						setTimeout(function() {
 							self.loadMedia();
@@ -339,7 +226,7 @@
 					},
 					loadMedia : function() {
 						var self = this;
-						
+
 						// Load media content after animation completes
 						if( this.eldata.content && this.$fullimage.is( ':visible' ) ) {
 							this.$loading.hide();
@@ -362,16 +249,16 @@
 					open : function() {
 						var self = this;
 
-						setTimeout( $.proxy( function() {	
-							this.setHeights();
-							this.positionPreview();
-							
+						setTimeout( function() {
+							self.setHeights();
+							self.positionPreview();
+
 							// Load media content after animation completes
 							setTimeout( function() {
 								self.loadMedia();
 							}, settings.speed + 100 );
-							
-						}, this ), 25 );
+
+						}, 25 );
 
 					},
 					close : function() {
@@ -385,21 +272,21 @@
 								self.$previewEl.remove();
 							};
 
-						setTimeout( $.proxy( function() {
+						setTimeout( function() {
 
-							if( typeof this.$largeImg !== 'undefined' ) {
-								this.$largeImg.fadeOut( 'fast' );
+							if( typeof self.$largeImg !== 'undefined' ) {
+								self.$largeImg.fadeOut( 'fast' );
 							}
-							this.$previewEl.css( 'height', 0 );
-							var $expandedItem = $items.eq( this.expandedIdx );
+							self.$previewEl.css( 'height', 0 );
+							var $expandedItem = $items.eq( self.expandedIdx );
 							$expandedItem.css( 'height', $expandedItem.data( 'height' ) ).on( transEndEventName, onEndFn );
 
 							if( !support ) {
 								onEndFn.call();
 							}
 
-						}, this ), 25 );
-						
+						}, 25 );
+
 						return false;
 
 					},
@@ -441,7 +328,7 @@
 						var position = this.$item.data( 'offsetTop' ),
 							previewOffsetT = this.$previewEl.offset().top - scrollExtra,
 							scrollVal = this.height + this.$item.data( 'height' ) + marginExpanded <= winsize.height ? position : this.height < winsize.height ? previewOffsetT - ( winsize.height - this.height ) : previewOffsetT;
-						
+
 						$body.animate( { scrollTop : scrollVal }, settings.speed );
 
 					},
@@ -454,7 +341,7 @@
 					}
 				}
 
-				return { 
+				return {
 					init : init,
 					addItems : addItems
 				};

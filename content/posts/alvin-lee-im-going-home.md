@@ -5,7 +5,7 @@ draft: false
 description: ""
 thumb: "images/thumbs/alvin-lee-im-going-home.jpg"
 alt: "Alvin Lee - I'm Going Home"
-tags: [rock,guitar]
+tags: ["rock", "guitar"]
 categories: []
 ---
 

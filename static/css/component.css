@@ -84,15 +84,11 @@
 	top: 50%;
 	height: 1px;
 	background: var(--text-color);
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
 	transform: rotate(45deg);
 	transition: all 0.3s ease;
 }
 
 .og-close::after {
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
 
@@ -154,16 +150,6 @@
 	margin: 10px 0;
 }
 
-.og-details {
-	width: 100%;
-	float: none;
-	height: auto;
-	overflow: hidden;
-	position: relative;
-	padding: 0 40px;
-	text-align: center;
-}
-
 .og-fullimg img {
 	display: inline-block;
 	max-height: 100%;
@@ -178,14 +164,6 @@
 	display: block;
 }
 
-.og-details h3 {
-	font-weight: 300;
-	font-size: 52px;
-	padding: 40px 0 10px;
-	margin-bottom: 10px;
-	color: var(--text-color);
-}
-
 .og-expander-inner h3 {
 	font-weight: 300;
 	font-size: 36px;
@@ -193,38 +171,6 @@
 	margin-bottom: 0;
 	text-align: center;
 	color: var(--text-color);
-}
-
-.og-details p {
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 22px;
-	color: #999;
-}
-
-.og-details a {
-	font-weight: 700;
-	font-size: 16px;
-	color: var(--text-color);
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	padding: 10px 20px;
-	border: 3px solid var(--text-color);
-	display: inline-block;
-	margin: 30px 0 0;
-	outline: none;
-	transition: all 0.3s ease;
-}
-
-.og-details a::before {
-	content: '\2192';
-	display: inline-block;
-	margin-right: 10px;
-}
-
-.og-details a:hover {
-	border-color: #999;
-	color: #999;
 }
 
 .og-loading {
@@ -237,21 +183,7 @@
 	top: 50%;
 	left: 50%;
 	margin: -25px 0 0 -25px;
-	-webkit-animation: loader 0.5s infinite ease-in-out both;
-	-moz-animation: loader 0.5s infinite ease-in-out both;
 	animation: loader 0.5s infinite ease-in-out both;
-}
-
-@-webkit-keyframes loader {
-	0% { background: #ddd; }
-	33% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
-	66% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; }
-}
-
-@-moz-keyframes loader {
-	0% { background: #ddd; }
-	33% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ccc, -15px 30px 1px #ddd; }
-	66% { background: #ccc; box-shadow: 0 0 1px #ccc, 15px 30px 1px #ddd, -15px 30px 1px #ccc; }
 }
 
 @keyframes loader {
@@ -263,8 +195,6 @@
 @media screen and (max-width: 830px) {
 
 	.og-expander h3 { font-size: 32px; }
-	.og-expander p { font-size: 13px; }
-	.og-expander a { font-size: 12px; }
 
 }
 
@@ -285,6 +215,5 @@
 		aspect-ratio: 16/9;
 	}
 	
-	.og-details { float: none; width: 100%; }
-	
+
 }
