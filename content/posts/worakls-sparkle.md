@@ -5,7 +5,7 @@ draft: false
 description: ""
 thumb: "images/thumbs/Worakls-Sparkle.jpg"
 alt: "Sparkle"
-tags: [electronic]
+tags: ["electronic"]
 categories: []
 ---
 
