@@ -3,7 +3,7 @@ title: "Nudity - Make-Up"
 date: 2026-05-05T11:00:00+01:00
 draft: false
 description: ""
-thumb: "images/thumbs/anudity-makeup.jpg"
+thumb: "images/thumbs/nudity-makeup.jpg"
 alt: "Nudity - Make-Up"
 tags: ["rock", "punk", "garage"]
 categories: []
