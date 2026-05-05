@@ -6,7 +6,6 @@
 .hugo_build.lock
 
 # Claude Code files
-CLAUDE.md
 .claude/
 
 # macOS
