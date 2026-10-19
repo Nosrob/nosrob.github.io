@@ -4,9 +4,11 @@ Context and guidelines for Claude when working in this repo.
 
 ## Project
 
-- **What**: Personal music discovery blog at https://nosrob.github.io/
+- **What**: Personal music discovery blog at https://music.borson.fr/ (https://nosrob.github.io/ redirects there)
 - **Stack**: Hugo static site (theme `lug` in `themes/lug/`), French content (`languageCode = "fr-fr"`)
-- **Hosting**: GitHub Pages, auto-deployed from `main` via `.github/workflows/hugo.yml`
+- **Hosting**: GitHub Pages, auto-deployed from `main` via `.github/workflows/hugo.yml`. The custom domain
+  `music.borson.fr` is set in the repo's Pages settings (DNS: CNAME `music` → `nosrob.github.io` at IONOS).
+  The workflow passes the Pages URL as `--baseURL`, so `baseURL` in `hugo.toml` only matters for local builds.
 - **Content**: Each post embeds a track (YouTube / Bandcamp / Spotify / SoundCloud) with a thumbnail
 
 ## Adding a new post

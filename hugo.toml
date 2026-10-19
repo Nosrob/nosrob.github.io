@@ -1,5 +1,5 @@
 # Site settings
-baseURL = "https://nosrob.github.io/"
+baseURL = "https://music.borson.fr/"
 languageCode = "fr-fr"
 title = "Lug"
 theme = "lug"
